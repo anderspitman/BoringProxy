@@ -97,6 +97,7 @@ func main() {
 		dnsServer := flagSet.String("dns-server", "", "Custom DNS server")
 		behindProxy := flagSet.Bool("behind-proxy", false, "Whether we're running behind another reverse proxy")
 		pollInterval := flagSet.Int("poll-interval-ms", 2000, "Interval in milliseconds to poll for tunnel changes")
+		proxyCommand := flagSet.String("proxy-command", "", "ProxyCommand to use for outgoing connectin")
 
 		err := flagSet.Parse(os.Args[2:])
 		if err != nil {
@@ -128,6 +129,7 @@ func main() {
 			DnsServer:      *dnsServer,
 			BehindProxy:    *behindProxy,
 			PollInterval:   *pollInterval,
+			ProxyCommand:   *proxyCommand,
 		}
 
 		ctx := context.Background()
